@@ -1,5 +1,5 @@
 // Тоглогчийн ээлж хадгалах хувьсагч, 1r toglogch 0, 2r toglogch 1 gej temdeglie.
-var activePlayer = 1;
+var activePlayer = 0;
 // Тоглогчийн цуглуулсан оноог хадгалах хувьсагч
 var scores = [0, 0]
 // Идэвхтэй тоглогчийн ээлжийн оноог хадгалах хувьсагч
@@ -20,12 +20,32 @@ diceDom.style.display = "none";
 // Шоог шидэх эвент листенер
 document.querySelector(".btn-roll").addEventListener('click', function() {
     var diceNumber = Math.floor(Math.random()  * 6) + 1;
-    // alert('shoo ' + diceNumber + ' buulaa');
-    diceDom.style.display = "block";
-    diceDom.src = 'dice-' + diceNumber + '.png';
     
+        // Шооны зургийг веб дээр гаргаж ирнэ
+    diceDom.style.display = "block";
+
+    // Буусан санамсаргүй тоонд харгалзах шооны зургийг веб дэр гаргаж ирнэ.
+    diceDom.src = 'dice-' + diceNumber + '.png';
+
+    // Буусан тоо нь 1-ээс ялгаатай бол идэвхтэй тоглогчийн ээлжийн тоог өөрчилнө.
+    if (diceNumber !== 1){
+        //1-ээс ялгаатай тоо буулаа. Буусан тоог тоглогчид нэмж өгнө.
+        roundScore = roundScore + diceNumber ;
+        document.getElementById("current-" + activePlayer).textContent = roundScore ;
+    } else {
+        // 1 буусанх тул тоглогчийн ээлжийг энэ хэсэгт сольж өгнө.
+        // Хэрэв идэвхтйэ тоглогч нь 0 байвал идэвхтэй тоглогчийг 1 болго. Үгүй бол идэвхтэй тоглогчийг 0 болго.
+        // Энэ тоглогчийн ээлжиндээ цуглуулсан оноог 0 болгоно.
+        roundScore = 0;
+        document.getElementById("current-" + activePlayer).textContent = 0;
+        activePlayer === 0 ? activePlayer = 1: activePlayer = 0;
+        
+        document.querySelector('.player-0-panel').classList.toggle("active");
+        document.querySelector('.player-1-panel').classList.toggle("active");
+
+        // Шоог түр алга болго
+        diceDom.style.display = 'none';
+ 
+      
+    }
 });
-
-
-
-// console.log('Шоо : ' + diceNumber);

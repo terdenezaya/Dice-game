@@ -50,11 +50,13 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 
        //  Дэлгэц дээр оноог нь өөрчилнө.
     document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
-    
+
      // Уг тоглогч хожсон эсэхийг  шалгах Оноо 100 хүрвэл хожино
 if(scores[activePlayer] >= 20){
     // Ялагч гэсэн текстийг нэрнийх нь оронд гаргана.
-    document.getElementById("name-" + activePlayer).textContent = "winner!"
+    document.getElementById("name-" + activePlayer).textContent = "winner!!!";
+    document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+    document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
 } else {
         // Тоглогчийн ээлжийг солино.
         switchToNextPlayer();

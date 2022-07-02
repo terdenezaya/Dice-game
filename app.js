@@ -58,7 +58,7 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
     } else {
         // 1 буусанх тул тоглогчийн ээлжийг энэ хэсэгт сольж өгнө.
         // Хэрэв идэвхтйэ тоглогч нь 0 байвал идэвхтэй тоглогчийг 1 болго. Үгүй бол идэвхтэй тоглогчийг 0 болго.
-                switchToNextPlayer();
+        switchToNextPlayer();
     }
 }
 });
